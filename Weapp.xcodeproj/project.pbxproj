@@ -7,18 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B7F65612BB79EE6007FBA95 /* pageframe.html in Resources */ = {isa = PBXBuildFile; fileRef = 6B7F65602BB79EE6007FBA95 /* pageframe.html */; };
 		6BD5E5972BB6C33A006EB33F /* WeappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5962BB6C33A006EB33F /* WeappApp.swift */; };
 		6BD5E5992BB6C33A006EB33F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5982BB6C33A006EB33F /* ContentView.swift */; };
 		6BD5E59B2BB6C33C006EB33F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BD5E59A2BB6C33C006EB33F /* Assets.xcassets */; };
 		6BD5E59E2BB6C33C006EB33F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BD5E59D2BB6C33C006EB33F /* Preview Assets.xcassets */; };
+		6BD5E5A62BB6C36B006EB33F /* MiniAppSandbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5A42BB6C36B006EB33F /* MiniAppSandbox.swift */; };
+		6BD5E5A72BB6C36B006EB33F /* AppManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5A52BB6C36B006EB33F /* AppManger.swift */; };
+		6BD5E5AD2BB6CFF6006EB33F /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5AC2BB6CFF6006EB33F /* Navigation.swift */; };
+		6BD5E5AF2BB6D43E006EB33F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5AE2BB6D43E006EB33F /* LoadingView.swift */; };
+		6BD5E5BB2BB6E9B3006EB33F /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5BA2BB6E9B3006EB33F /* Bridge.swift */; };
+		6BD5E5BD2BB6EBF0006EB33F /* JSCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5BC2BB6EBF0006EB33F /* JSCore.swift */; };
+		6BD647F02BB7EDBA006DC9C6 /* WeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD647EF2BB7EDBA006DC9C6 /* WeWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B7F65602BB79EE6007FBA95 /* pageframe.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = pageframe.html; sourceTree = "<group>"; };
 		6BD5E5932BB6C33A006EB33F /* Weapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD5E5962BB6C33A006EB33F /* WeappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeappApp.swift; sourceTree = "<group>"; };
 		6BD5E5982BB6C33A006EB33F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6BD5E59A2BB6C33C006EB33F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BD5E59D2BB6C33C006EB33F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6BD5E5A42BB6C36B006EB33F /* MiniAppSandbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniAppSandbox.swift; sourceTree = "<group>"; };
+		6BD5E5A52BB6C36B006EB33F /* AppManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManger.swift; sourceTree = "<group>"; };
+		6BD5E5A82BB6CD2A006EB33F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6BD5E5AC2BB6CFF6006EB33F /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		6BD5E5AE2BB6D43E006EB33F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		6BD5E5B22BB6E53E006EB33F /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		6BD5E5B42BB6E55D006EB33F /* logic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
+		6BD5E5B62BB6E566006EB33F /* view.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
+		6BD5E5B82BB6E573006EB33F /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		6BD5E5BA2BB6E9B3006EB33F /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
+		6BD5E5BC2BB6EBF0006EB33F /* JSCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCore.swift; sourceTree = "<group>"; };
+		6BD5E5BF2BB6EE54006EB33F /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		6BD5E5C22BB709A9006EB33F /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		6BD647EF2BB7EDBA006DC9C6 /* WeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeWrapper.swift; sourceTree = "<group>"; };
+		6BD647FF2BB96715006DC9C6 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		6BD648002BB96715006DC9C6 /* logic.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
+		6BD648012BB96715006DC9C6 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		6BD648022BB96715006DC9C6 /* view.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +78,21 @@
 		6BD5E5952BB6C33A006EB33F /* Weapp */ = {
 			isa = PBXGroup;
 			children = (
+				6BD5E5C12BB70996006EB33F /* ui */,
+				6BD5E5BE2BB6EE2B006EB33F /* logic */,
+				6BD5E5B02BB6E4EA006EB33F /* apps */,
+				6BD5E5A82BB6CD2A006EB33F /* Info.plist */,
 				6BD5E5962BB6C33A006EB33F /* WeappApp.swift */,
 				6BD5E5982BB6C33A006EB33F /* ContentView.swift */,
+				6BD5E5A52BB6C36B006EB33F /* AppManger.swift */,
+				6BD5E5A42BB6C36B006EB33F /* MiniAppSandbox.swift */,
+				6BD647EF2BB7EDBA006DC9C6 /* WeWrapper.swift */,
+				6BD5E5BC2BB6EBF0006EB33F /* JSCore.swift */,
+				6BD5E5BA2BB6E9B3006EB33F /* Bridge.swift */,
+				6BD5E5AE2BB6D43E006EB33F /* LoadingView.swift */,
 				6BD5E59A2BB6C33C006EB33F /* Assets.xcassets */,
 				6BD5E59C2BB6C33C006EB33F /* Preview Content */,
+				6BD5E5AC2BB6CFF6006EB33F /* Navigation.swift */,
 			);
 			path = Weapp;
 			sourceTree = "<group>";
@@ -65,6 +103,54 @@
 				6BD5E59D2BB6C33C006EB33F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6BD5E5B02BB6E4EA006EB33F /* apps */ = {
+			isa = PBXGroup;
+			children = (
+				6BD648032BB96715006DC9C6 /* meituan */,
+				6BD5E5B12BB6E4F7006EB33F /* douyin */,
+			);
+			path = apps;
+			sourceTree = "<group>";
+		};
+		6BD5E5B12BB6E4F7006EB33F /* douyin */ = {
+			isa = PBXGroup;
+			children = (
+				6BD5E5B42BB6E55D006EB33F /* logic.js */,
+				6BD5E5B62BB6E566006EB33F /* view.js */,
+				6BD5E5B82BB6E573006EB33F /* style.css */,
+				6BD5E5B22BB6E53E006EB33F /* config.json */,
+			);
+			path = douyin;
+			sourceTree = "<group>";
+		};
+		6BD5E5BE2BB6EE2B006EB33F /* logic */ = {
+			isa = PBXGroup;
+			children = (
+				6BD5E5BF2BB6EE54006EB33F /* index.js */,
+			);
+			path = logic;
+			sourceTree = "<group>";
+		};
+		6BD5E5C12BB70996006EB33F /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				6B7F65602BB79EE6007FBA95 /* pageframe.html */,
+				6BD5E5C22BB709A9006EB33F /* index.js */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		6BD648032BB96715006DC9C6 /* meituan */ = {
+			isa = PBXGroup;
+			children = (
+				6BD647FF2BB96715006DC9C6 /* config.json */,
+				6BD648002BB96715006DC9C6 /* logic.js */,
+				6BD648012BB96715006DC9C6 /* style.css */,
+				6BD648022BB96715006DC9C6 /* view.js */,
+			);
+			path = meituan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +169,8 @@
 			dependencies = (
 			);
 			name = Weapp;
+			packageProductDependencies = (
+			);
 			productName = Weapp;
 			productReference = 6BD5E5932BB6C33A006EB33F /* Weapp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +199,8 @@
 				Base,
 			);
 			mainGroup = 6BD5E58A2BB6C33A006EB33F;
+			packageReferences = (
+			);
 			productRefGroup = 6BD5E5942BB6C33A006EB33F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BD5E59E2BB6C33C006EB33F /* Preview Assets.xcassets in Resources */,
+				6B7F65612BB79EE6007FBA95 /* pageframe.html in Resources */,
 				6BD5E59B2BB6C33C006EB33F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,7 +229,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BD5E5992BB6C33A006EB33F /* ContentView.swift in Sources */,
+				6BD5E5A72BB6C36B006EB33F /* AppManger.swift in Sources */,
+				6BD5E5BB2BB6E9B3006EB33F /* Bridge.swift in Sources */,
+				6BD5E5AD2BB6CFF6006EB33F /* Navigation.swift in Sources */,
 				6BD5E5972BB6C33A006EB33F /* WeappApp.swift in Sources */,
+				6BD5E5BD2BB6EBF0006EB33F /* JSCore.swift in Sources */,
+				6BD5E5A62BB6C36B006EB33F /* MiniAppSandbox.swift in Sources */,
+				6BD5E5AF2BB6D43E006EB33F /* LoadingView.swift in Sources */,
+				6BD647F02BB7EDBA006DC9C6 /* WeWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +373,7 @@
 				DEVELOPMENT_TEAM = 5MWQNTQR5M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Weapp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +403,7 @@
 				DEVELOPMENT_TEAM = 5MWQNTQR5M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Weapp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

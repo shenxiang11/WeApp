@@ -45,7 +45,7 @@
   },
   goDetail() {
     wx.navigateTo({
-      url: 'pages/detail/index?a=1&b=2'
+      url: 'pages/detail/index'
     });
   },
   openJingdong() {

@@ -26,8 +26,8 @@
         "ui-view",
         { staticClass: "sub-title" },
         [
-          _vm.number === 1
-            ? _c("ui-text", [_vm._v("一")])
+          _vm.number === 10
+            ? _c("ui-text", [_vm._v("十")])
             : _vm.number === 2
             ? _c("ui-text", [_vm._v("二")])
             : _c("ui-text", [_vm._v("未知数字")]),
