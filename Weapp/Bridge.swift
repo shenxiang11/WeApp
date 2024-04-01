@@ -18,17 +18,19 @@ class Bridge: NSObject {
     weak var parent: MiniAppSandbox?
     let page: String
     let pages: [String]
+    let appInfo: [String: Any]
 
     var uiLoaded = false
     var logicLoaded = false
 
-    init(isRoot: Bool, webview: WKWebView, jscore: JSCore, parent: MiniAppSandbox, pages: [String], page: String) {
+    init(isRoot: Bool, webview: WKWebView, jscore: JSCore, parent: MiniAppSandbox, pages: [String], page: String, appInfo: [String: Any]) {
         self.isRoot = isRoot
         self.webView = webview
         self.jscore = jscore
         self.parent = parent
         self.pages = pages
         self.page = page
+        self.appInfo = appInfo
 
         super.init()
 
@@ -39,11 +41,14 @@ class Bridge: NSObject {
         guard let parent = parent else { return }
 
         if isRoot {
+            guard let url = URL(string: parent.appInfo.path), let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return }
+
             sendUIMessage(payload: [
                 "type": "loadResource",
                 "body": [
                     "appId": parent.appInfo.appId,
-                    "pagePath": parent.appInfo.path
+                    "pagePath": components.path,
+                    "query": components.query
                 ]
             ])
 
@@ -56,11 +61,14 @@ class Bridge: NSObject {
                 ]
             ])
         } else {
+            guard let url = URL(string: page), let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return }
+
             sendUIMessage(payload: [
                 "type": "loadResource",
                 "body": [
                     "appId": parent.appInfo.appId,
-                    "pagePath": page
+                    "pagePath": components.path,
+                    "query": components.query
                 ]
             ])
         }
@@ -89,6 +97,8 @@ class Bridge: NSObject {
             }
         } else if type == "moduleCreated" {
             createPageInstance(body)
+        } else if type == "moduleMounted" {
+            sendLogicMessage(payload: payload)
         } else if type == "triggerEvent" {
             sendLogicMessage(payload: payload)
         }
@@ -109,16 +119,24 @@ class Bridge: NSObject {
                 notifyMakeInitialData()
             } else if type == "initialDataIsReady" {
                 if let initialData = body["initialData"] as? [String: Any], let pagePath = body["pagePath"] as? String {
+                    let pagePath = isRoot ? pagePath : page
+                    guard let url = URL(string: pagePath), let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return }
+
                     sendUIMessage(payload: [
                         "type": "setInitialData",
                         "body": [
                             "initialData": initialData, // 自定义组件时，考虑不一样的数据
-                            "pagePath": isRoot ? pagePath : page, // TODO: FIXME
+                            "pagePath": components.path,
+                            "query": components.queryItems?.convert(),
                             "bridgeId": bridgeId
                         ]
                     ])
                 }
             } else if type == "updateModule" {
+                sendUIMessage(payload: payload)
+            } else if type == "pauseVideo" {
+                sendUIMessage(payload: payload)
+            } else if type == "playVideo" {
                 sendUIMessage(payload: payload)
             }
         }
@@ -133,23 +151,28 @@ class Bridge: NSObject {
     func createApp() {
         guard let parent = parent else { return }
 
+        let pagePath = isRoot ? parent.appInfo.path : page
+        guard let url = URL(string: pagePath), let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return }
+
         sendLogicMessage(payload: [
             "type": "createApp",
             "body": [
                 "bridgeId": id,
-                "pagePath": isRoot ? parent.appInfo.path : page,
+                "pagePath": components.path,
+                "query": components.query
             ]
         ])
     }
 
     func createPageInstance(_ body: [String: Any]) {
-        guard let id = body["id"] as? String, let path = body["path"] as? String else { return }
+        guard let id = body["id"] as? String, let path = body["path"] as? String, let query = body["query"] else { return }
 
         sendLogicMessage(payload: [
             "type": "createPageInstance",
             "body": [
                 "id": id,
                 "path": path,
+                "query": query,
                 "bridgeId": self.id
             ]
         ])
@@ -158,11 +181,14 @@ class Bridge: NSObject {
     func notifyMakeInitialData() {
         guard let parent = parent else { return }
 
+        guard let url = URL(string: parent.appInfo.path), let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return }
+
         sendLogicMessage(payload: [
             "type": "makePageInitialData",
             "body": [
                 "bridgeId": id,
-                "pagePath": parent.appInfo.path,
+                "pagePath": components.path,
+                "query": components.query
             ]
         ])
     }
@@ -196,8 +222,17 @@ extension Bridge {
         let view = WeWebView(webView: self.webView)
         let vc = UIHostingController(rootView: view)
         
+        let path = isRoot ? parent.appInfo.path : page
+
+        guard let url = URL(string: path), let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return }
+
+        guard let pages = appInfo["modules"] as? [String: Any] else { return }
+
+        guard let config = pages[components.path] as? [String: Any] else { return }
+
         vc.navigationItem.backBarButtonItem?.tintColor = .black
         vc.navigationItem.backButtonTitle = ""
+        vc.navigationItem.title = config["navigationBarTitleText"] as? String ?? ""
 
         if isRoot {
             parent.miniNavigationController?.setViewControllers([vc], animated: false)
@@ -228,5 +263,17 @@ extension Bridge: UIScrollViewDelegate {
                 "offsetY": scrollView.contentOffset.y
             ]
         ])
+    }
+}
+
+extension [URLQueryItem] {
+    func convert() -> [String: Any] {
+        var dict: [String: Any] = [:]
+
+        for item in self {
+            dict[item.name] = item.value
+        }
+
+        return dict
     }
 }

@@ -5,7 +5,7 @@
     currentPlayId: '',
     videoList: [{
       id: 'video1',
-      url: '//miniapp.ai-matrix.vip/lib/zhuzhu.mp4',
+      url: '//miniapp.ai-matrix.vip/lib/zhuzhu.mp4?playsinline=1',
       poster: '//miniapp.ai-matrix.vip/lib/poster.jpg',
       status: 'ready',
       detail: {
@@ -25,7 +25,7 @@
       }
     }, {
       id: 'video2',
-      url: '//miniapp.ai-matrix.vip/lib/333.mp4',
+      url: '//miniapp.ai-matrix.vip/lib/333.mp4?playsinline=1',
       poster: '//miniapp.ai-matrix.vip/lib/333.jpg',
       status: 'ready',
       detail: {
@@ -45,7 +45,7 @@
       }
     }, {
       id: 'video3',
-      url: '//miniapp.ai-matrix.vip/lib/111.mp4',
+      url: '//miniapp.ai-matrix.vip/lib/111.mp4?playsinline=1',
       poster: '//miniapp.ai-matrix.vip/lib/111.jpg',
       status: 'ready',
       detail: {
@@ -71,7 +71,7 @@
       }
     }, {
       id: 'video4',
-      url: '//miniapp.ai-matrix.vip/lib/888.mp4',
+      url: '//miniapp.ai-matrix.vip/lib/888.mp4?playsinline=1',
       poster: '//miniapp.ai-matrix.vip/lib/888.jpg',
       status: 'ready',
       detail: {
@@ -104,6 +104,7 @@
   onShow: function () {
     // 页面出现在前台时执行
     console.log('抖音首页 page onShow');
+      console.log(this.data.currentPlayId)
     if (!this.data.currentPlayId) {
       return;
     }
@@ -265,13 +266,13 @@
     if (type === 'shoping') {
       wx.navigateToMiniProgram({
         appId: 'jingdong',
-        path: `/pages/home/index?shop_id=${shop_id}`
+        path: `pages/home/index?shop_id=${shop_id}`
       });
     }
     if (type === 'location') {
       wx.navigateToMiniProgram({
         appId: 'meituan',
-        path: `/pages/home/index?shop_id=${shop_id}`
+        path: `pages/home/index?shop_id=${shop_id}`
       });
     }
   },
@@ -280,7 +281,7 @@
       userId
     } = e.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/detail/index?user_id=${userId}`
+      url: `pages/detail/index?user_id=${userId}`
     });
   }
 }, {
@@ -349,9 +350,8 @@ module.exports = {
 			});
 		
 			modDefine('pages/detail/index', function(require, module, exports) {
-				const {
-  getUserData
-} = require('utils/util');
+				const obj = require('utils/util');
+                const getUserData = obj.exports.getUserData;
 Page({
   data: {
     userData: null

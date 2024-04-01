@@ -30,6 +30,8 @@ class MiniAppSandbox: NSObject {
 
     var miniNavigationController: UINavigationController?
 
+    var detailInfo: [String: Any]?
+
     init(appInfo: AppInfo) {
         self.appInfo = appInfo
         super.init()
@@ -59,16 +61,22 @@ class MiniAppSandbox: NSObject {
 
         Task {
             let info = await readFile(appId: appInfo.appId)
-            guard let appInfo = info["app"] as? [String: Any], let pages = appInfo["pages"] as? [String] else { return }
+            self.detailInfo = info
 
             DispatchQueue.main.async {
-                self.createWebView(pages: pages)
+                self.createWebView(info)
             }
         }
     }
 
-    func createWebView(pages: [String]) {
-        let webview = WKWebView()
+    func createWebView(_ info: [String: Any]) {
+        guard let appInfo = info["app"] as? [String: Any] else { return }
+        guard let pages = appInfo["pages"] as? [String] else { return }
+
+        let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback = true
+        config.mediaTypesRequiringUserActionForPlayback = .all
+        let webview = WKWebView(frame: .zero, configuration: config)
         webview.isInspectable = true
 
         let url = URL(string: "http://192.168.31.134:3000/ui/pageframe.html")
@@ -77,7 +85,7 @@ class MiniAppSandbox: NSObject {
         webview.load(request)
 
         guard let jscore = jscore else { return }
-        let entryPageBridge = Bridge(isRoot: true, webview: webview, jscore: jscore, parent: self, pages: pages, page: "")
+        let entryPageBridge = Bridge(isRoot: true, webview: webview, jscore: jscore, parent: self, pages: pages, page: "", appInfo: info)
         webview.navigationDelegate = entryPageBridge
         webview.scrollView.delegate = entryPageBridge
 
@@ -153,7 +161,10 @@ extension MiniAppSandbox {
     func navigateTo(params: [String: Any]) {
         guard let urlStr = params["url"] as? String else { return }
 
-        let webview = WKWebView()
+        let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback = true
+        config.mediaTypesRequiringUserActionForPlayback = .all
+        let webview = WKWebView(frame: .zero, configuration: config)
         webview.isInspectable = true
 
         let url = URL(string: "http://192.168.31.134:3000/ui/pageframe.html")
@@ -161,8 +172,8 @@ extension MiniAppSandbox {
         let request = URLRequest(url: url)
         webview.load(request)
 
-        guard let jscore = jscore else { return }
-        let bridge = Bridge(isRoot: false, webview: webview, jscore: jscore, parent: self, pages: [], page: urlStr)
+        guard let jscore = jscore, let detailInfo = detailInfo else { return }
+        let bridge = Bridge(isRoot: false, webview: webview, jscore: jscore, parent: self, pages: [], page: urlStr, appInfo: detailInfo)
         webview.navigationDelegate = bridge
         webview.scrollView.delegate = bridge
         self.bridgeList.append(bridge)

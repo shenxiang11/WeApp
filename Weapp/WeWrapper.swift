@@ -13,6 +13,7 @@ struct WeWrapper<Content: View>: View {
     var body: some View {
         content()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea()
             .overlay(alignment: .topTrailing) {
                 HStack(spacing: 0) {
                     Button {

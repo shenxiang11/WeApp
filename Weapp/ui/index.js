@@ -12,13 +12,19 @@ const set = (obj, path, value) => {
 class RuntimeManager {
     constructor() {
         this.page = null
+        this.query = {}
         this.pageId = ''
         this.uiInstance = {}
     }
 
-    firstRender(pagePath, bridgeId) {
+    firstRender(pagePath, bridgeId, query) {
         this.pageId = bridgeId
-        const options = this.makeVueOptions(pagePath, bridgeId)
+        
+        if (query) {
+            this.query = query
+        }
+
+        const options = this.makeVueOptions(pagePath, bridgeId, query)
         this.page = new Vue(options)
         this.page.$mount('#app')
     }
@@ -29,11 +35,10 @@ class RuntimeManager {
         for (let key in data) {
             set(instance, key, data[key])
         }
-        console.log(instance)
         instance.$forceUpdate()
     }
 
-    makeVueOptions(path, bridgeId) {
+    makeVueOptions(path, bridgeId, query) {
         const staticModule = loader.staticModules.get(path)
         const pageId = this.pageId
         const uiInstance = this.uiInstance
@@ -55,8 +60,14 @@ class RuntimeManager {
                 sentMessageToNative('moduleCreated', {
                     id: pageId,
                     path,
+                    query,
                 })
             },
+            mounted() {
+                sentMessageToNative('moduleMounted', {
+                    id: pageId,
+                })
+            }
         }
     }
 }
@@ -112,6 +123,7 @@ class Loader {
 let loader = new Loader()
 
 function onMessage(payload) {
+    console.log('!!!!', payload)
     const {
         type,
         body,
@@ -124,15 +136,28 @@ function onMessage(payload) {
             initialData,
             pagePath,
             bridgeId,
+            query,
         } = body
-        loader.setInitialData(initialData, pagePath)
-        runtimeManager.firstRender(pagePath, bridgeId)
+        loader.setInitialData(initialData, pagePath, query)
+        runtimeManager.firstRender(pagePath, bridgeId, query)
     } else if (type === 'updateModule') {
         const {
             bridgeId,
             data,
         } = body
         runtimeManager.updateModule(bridgeId, data)
+    } else if (type == 'pauseVideo') {
+        const {
+            bridgeId,
+            videoId,
+        } = body
+        window.postMessage({ type: 'pauseVideo', body: { videoId: videoId } })
+    } else if (type == 'playVideo') {
+        const {
+            bridgeId,
+            videoId,
+        } = body
+        window.postMessage({ type: 'playVideo', body: { videoId: videoId } })
     }
 }
 

@@ -69,6 +69,40 @@ wx.navigateBack = function() {
     })
 }
 
+class VideoContext {
+    constructor(videoId) {
+        this.videoId = videoId
+    }
+
+    pause() {
+        const currentPageInfo = navigation.getCurrentPageInfo()
+
+        NativeAPI.sendMessage({
+            type: 'pauseVideo',
+            body: {
+                videoId: this.videoId,
+                bridgeId: currentPageInfo.bridgeId
+            }
+        })
+    }
+
+    play() {
+        const currentPageInfo = navigation.getCurrentPageInfo()
+
+        NativeAPI.sendMessage({
+            type: 'playVideo',
+            body: {
+                videoId: this.videoId,
+                bridgeId: currentPageInfo.bridgeId
+            }
+        })
+    }
+}
+
+wx.createVideoContext = function(id) {
+    return new VideoContext(id)
+}
+
 const set = (obj, path, value) => {
   // Regex explained: https://regexr.com/58j0k
   const pathArray = Array.isArray(path) ? path : path.match(/([^[.\]])+/g)
@@ -109,13 +143,13 @@ class AppInstance {
 }
 
 class PageInstance {
-    constructor(pageModeule, { bridgeId }) {
+    constructor(pageModeule, { bridgeId, query }) {
         this.pageModeule = pageModeule
         this.id = bridgeId
         this.data = JSON.parse(JSON.stringify(pageModeule.data))
         this.initLifecycle()
         this.initMethods()
-        this.onLoad()
+        this.onLoad(query)
         this.onShow()
     }
 
@@ -167,7 +201,7 @@ class Navigation {
     }
 
     getCurrentPageInfo() {
-        return this.stack(this.stack.length - 1)
+        return this.stack[this.stack.length - 1]
     }
 }
 
@@ -190,13 +224,15 @@ class RuntimeManager {
         })
     }
 
-    createPage(path, bridgeId) {
+    createPage(path, bridgeId, query) {
         const moduleInfo = loader.staticModules.get(path)
         navigation.pushState({
             path,
             bridgeId,
+            query,
         })
-        this.pages.set(bridgeId, new PageInstance(moduleInfo, { bridgeId, path }))
+        console.log("!!!!!", navigation)
+        this.pages.set(bridgeId, new PageInstance(moduleInfo, { bridgeId, path, query }))
     }
  
     pageScroll(bridgeId, offsetY) {
@@ -207,6 +243,11 @@ class RuntimeManager {
     triggerEvent(bridgeId, eventName, paramsList) {
         let page = this.pages.get(bridgeId)
         page[eventName] && page[eventName](...paramsList)
+    }
+
+    pageReady(bridgeId) {
+        const page = this.pages.get(bridgeId);
+        page.onReady && page.onReady();
     }
 }
 
@@ -245,7 +286,7 @@ class Loader {
 let loader = new Loader()
 
 function nativeCall(payload) {
-    console.log(payload)
+    console.log("Native Call:", payload)
     const {
         type,
         body,
@@ -287,9 +328,10 @@ function nativeCall(payload) {
     } else if (type === 'createPageInstance') {
         const {
             path,
-            bridgeId
+            bridgeId,
+            query
         } = body
-        runtimeManager.createPage(path, bridgeId)
+        runtimeManager.createPage(path, bridgeId, query)
     } else if (type === 'pageScroll') {
         const {
             bridgeId,
@@ -303,6 +345,11 @@ function nativeCall(payload) {
             paramsList,
         } = body
         runtimeManager.triggerEvent(id, methodName, paramsList)
+    } else if (type === 'moduleMounted') {
+        const {
+            id,
+        } = body
+        runtimeManager.pageReady(id)
     }
 }
 

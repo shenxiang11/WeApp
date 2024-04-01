@@ -23,6 +23,14 @@
 
 /* Begin PBXFileReference section */
 		6B7F65602BB79EE6007FBA95 /* pageframe.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = pageframe.html; sourceTree = "<group>"; };
+		6BC0B7D42BBA6E9C007DEBAC /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		6BC0B7D52BBA6E9C007DEBAC /* logic.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
+		6BC0B7D62BBA6E9C007DEBAC /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		6BC0B7D72BBA6E9C007DEBAC /* view.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
+		6BC0B7D92BBA7D3F007DEBAC /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		6BC0B7DA2BBA7D3F007DEBAC /* logic.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
+		6BC0B7DB2BBA7D3F007DEBAC /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		6BC0B7DC2BBA7D3F007DEBAC /* view.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
 		6BD5E5932BB6C33A006EB33F /* Weapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD5E5962BB6C33A006EB33F /* WeappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeappApp.swift; sourceTree = "<group>"; };
 		6BD5E5982BB6C33A006EB33F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -33,10 +41,6 @@
 		6BD5E5A82BB6CD2A006EB33F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6BD5E5AC2BB6CFF6006EB33F /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		6BD5E5AE2BB6D43E006EB33F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		6BD5E5B22BB6E53E006EB33F /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
-		6BD5E5B42BB6E55D006EB33F /* logic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
-		6BD5E5B62BB6E566006EB33F /* view.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
-		6BD5E5B82BB6E573006EB33F /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		6BD5E5BA2BB6E9B3006EB33F /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		6BD5E5BC2BB6EBF0006EB33F /* JSCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCore.swift; sourceTree = "<group>"; };
 		6BD5E5BF2BB6EE54006EB33F /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
@@ -59,6 +63,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6BC0B7D82BBA6E9C007DEBAC /* jingdong */ = {
+			isa = PBXGroup;
+			children = (
+				6BC0B7D42BBA6E9C007DEBAC /* config.json */,
+				6BC0B7D52BBA6E9C007DEBAC /* logic.js */,
+				6BC0B7D62BBA6E9C007DEBAC /* style.css */,
+				6BC0B7D72BBA6E9C007DEBAC /* view.js */,
+			);
+			path = jingdong;
+			sourceTree = "<group>";
+		};
+		6BC0B7DD2BBA7D3F007DEBAC /* douyin */ = {
+			isa = PBXGroup;
+			children = (
+				6BC0B7D92BBA7D3F007DEBAC /* config.json */,
+				6BC0B7DA2BBA7D3F007DEBAC /* logic.js */,
+				6BC0B7DB2BBA7D3F007DEBAC /* style.css */,
+				6BC0B7DC2BBA7D3F007DEBAC /* view.js */,
+			);
+			path = douyin;
+			sourceTree = "<group>";
+		};
 		6BD5E58A2BB6C33A006EB33F = {
 			isa = PBXGroup;
 			children = (
@@ -108,21 +134,11 @@
 		6BD5E5B02BB6E4EA006EB33F /* apps */ = {
 			isa = PBXGroup;
 			children = (
+				6BC0B7DD2BBA7D3F007DEBAC /* douyin */,
+				6BC0B7D82BBA6E9C007DEBAC /* jingdong */,
 				6BD648032BB96715006DC9C6 /* meituan */,
-				6BD5E5B12BB6E4F7006EB33F /* douyin */,
 			);
 			path = apps;
-			sourceTree = "<group>";
-		};
-		6BD5E5B12BB6E4F7006EB33F /* douyin */ = {
-			isa = PBXGroup;
-			children = (
-				6BD5E5B42BB6E55D006EB33F /* logic.js */,
-				6BD5E5B62BB6E566006EB33F /* view.js */,
-				6BD5E5B82BB6E573006EB33F /* style.css */,
-				6BD5E5B22BB6E53E006EB33F /* config.json */,
-			);
-			path = douyin;
 			sourceTree = "<group>";
 		};
 		6BD5E5BE2BB6EE2B006EB33F /* logic */ = {
