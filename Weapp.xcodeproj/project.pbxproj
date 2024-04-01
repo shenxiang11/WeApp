@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6B7F65612BB79EE6007FBA95 /* pageframe.html in Resources */ = {isa = PBXBuildFile; fileRef = 6B7F65602BB79EE6007FBA95 /* pageframe.html */; };
+		6BC0B7DE2BBAE225007DEBAC /* logic.js in Resources */ = {isa = PBXBuildFile; fileRef = 6BD5E5BF2BB6EE54006EB33F /* logic.js */; };
+		6BC0B7E02BBAE273007DEBAC /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 6BD5E5C22BB709A9006EB33F /* index.js */; };
 		6BD5E5972BB6C33A006EB33F /* WeappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5962BB6C33A006EB33F /* WeappApp.swift */; };
 		6BD5E5992BB6C33A006EB33F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD5E5982BB6C33A006EB33F /* ContentView.swift */; };
 		6BD5E59B2BB6C33C006EB33F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BD5E59A2BB6C33C006EB33F /* Assets.xcassets */; };
@@ -23,14 +25,6 @@
 
 /* Begin PBXFileReference section */
 		6B7F65602BB79EE6007FBA95 /* pageframe.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = pageframe.html; sourceTree = "<group>"; };
-		6BC0B7D42BBA6E9C007DEBAC /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
-		6BC0B7D52BBA6E9C007DEBAC /* logic.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
-		6BC0B7D62BBA6E9C007DEBAC /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		6BC0B7D72BBA6E9C007DEBAC /* view.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
-		6BC0B7D92BBA7D3F007DEBAC /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
-		6BC0B7DA2BBA7D3F007DEBAC /* logic.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
-		6BC0B7DB2BBA7D3F007DEBAC /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		6BC0B7DC2BBA7D3F007DEBAC /* view.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
 		6BD5E5932BB6C33A006EB33F /* Weapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD5E5962BB6C33A006EB33F /* WeappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeappApp.swift; sourceTree = "<group>"; };
 		6BD5E5982BB6C33A006EB33F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,13 +37,9 @@
 		6BD5E5AE2BB6D43E006EB33F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		6BD5E5BA2BB6E9B3006EB33F /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		6BD5E5BC2BB6EBF0006EB33F /* JSCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCore.swift; sourceTree = "<group>"; };
-		6BD5E5BF2BB6EE54006EB33F /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		6BD5E5BF2BB6EE54006EB33F /* logic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
 		6BD5E5C22BB709A9006EB33F /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
 		6BD647EF2BB7EDBA006DC9C6 /* WeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeWrapper.swift; sourceTree = "<group>"; };
-		6BD647FF2BB96715006DC9C6 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
-		6BD648002BB96715006DC9C6 /* logic.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = logic.js; sourceTree = "<group>"; };
-		6BD648012BB96715006DC9C6 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		6BD648022BB96715006DC9C6 /* view.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = view.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,28 +53,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6BC0B7D82BBA6E9C007DEBAC /* jingdong */ = {
-			isa = PBXGroup;
-			children = (
-				6BC0B7D42BBA6E9C007DEBAC /* config.json */,
-				6BC0B7D52BBA6E9C007DEBAC /* logic.js */,
-				6BC0B7D62BBA6E9C007DEBAC /* style.css */,
-				6BC0B7D72BBA6E9C007DEBAC /* view.js */,
-			);
-			path = jingdong;
-			sourceTree = "<group>";
-		};
-		6BC0B7DD2BBA7D3F007DEBAC /* douyin */ = {
-			isa = PBXGroup;
-			children = (
-				6BC0B7D92BBA7D3F007DEBAC /* config.json */,
-				6BC0B7DA2BBA7D3F007DEBAC /* logic.js */,
-				6BC0B7DB2BBA7D3F007DEBAC /* style.css */,
-				6BC0B7DC2BBA7D3F007DEBAC /* view.js */,
-			);
-			path = douyin;
-			sourceTree = "<group>";
-		};
 		6BD5E58A2BB6C33A006EB33F = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +74,6 @@
 			children = (
 				6BD5E5C12BB70996006EB33F /* ui */,
 				6BD5E5BE2BB6EE2B006EB33F /* logic */,
-				6BD5E5B02BB6E4EA006EB33F /* apps */,
 				6BD5E5A82BB6CD2A006EB33F /* Info.plist */,
 				6BD5E5962BB6C33A006EB33F /* WeappApp.swift */,
 				6BD5E5982BB6C33A006EB33F /* ContentView.swift */,
@@ -131,20 +98,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		6BD5E5B02BB6E4EA006EB33F /* apps */ = {
-			isa = PBXGroup;
-			children = (
-				6BC0B7DD2BBA7D3F007DEBAC /* douyin */,
-				6BC0B7D82BBA6E9C007DEBAC /* jingdong */,
-				6BD648032BB96715006DC9C6 /* meituan */,
-			);
-			path = apps;
-			sourceTree = "<group>";
-		};
 		6BD5E5BE2BB6EE2B006EB33F /* logic */ = {
 			isa = PBXGroup;
 			children = (
-				6BD5E5BF2BB6EE54006EB33F /* index.js */,
+				6BD5E5BF2BB6EE54006EB33F /* logic.js */,
 			);
 			path = logic;
 			sourceTree = "<group>";
@@ -156,17 +113,6 @@
 				6BD5E5C22BB709A9006EB33F /* index.js */,
 			);
 			path = ui;
-			sourceTree = "<group>";
-		};
-		6BD648032BB96715006DC9C6 /* meituan */ = {
-			isa = PBXGroup;
-			children = (
-				6BD647FF2BB96715006DC9C6 /* config.json */,
-				6BD648002BB96715006DC9C6 /* logic.js */,
-				6BD648012BB96715006DC9C6 /* style.css */,
-				6BD648022BB96715006DC9C6 /* view.js */,
-			);
-			path = meituan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,9 +177,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BC0B7E02BBAE273007DEBAC /* index.js in Resources */,
 				6BD5E59E2BB6C33C006EB33F /* Preview Assets.xcassets in Resources */,
 				6B7F65612BB79EE6007FBA95 /* pageframe.html in Resources */,
 				6BD5E59B2BB6C33C006EB33F /* Assets.xcassets in Resources */,
+				6BC0B7DE2BBAE225007DEBAC /* logic.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

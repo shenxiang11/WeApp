@@ -79,7 +79,7 @@ class MiniAppSandbox: NSObject {
         let webview = WKWebView(frame: .zero, configuration: config)
         webview.isInspectable = true
 
-        let url = URL(string: "http://192.168.31.134:3000/ui/pageframe.html")
+        let url = URL(string: "https://weapp-frame.oss-cn-shanghai.aliyuncs.com/ui/pageframe.html")
         guard let url = url else { return }
         let request = URLRequest(url: url)
         webview.load(request)
@@ -108,7 +108,7 @@ class MiniAppSandbox: NSObject {
 
     private func readFile(appId: String) async -> [String: Any] {
         // 1. 指定API的URL
-        let urlString = "http://192.168.31.134:3000/apps/\(appId)/config.json"
+        let urlString = "https://weapp-frame.oss-cn-shanghai.aliyuncs.com/\(appId)/config.json"
 
         // 2. 创建URL对象
         guard let url = URL(string: urlString) else {
@@ -167,7 +167,7 @@ extension MiniAppSandbox {
         let webview = WKWebView(frame: .zero, configuration: config)
         webview.isInspectable = true
 
-        let url = URL(string: "http://192.168.31.134:3000/ui/pageframe.html")
+        let url = URL(string: "https://raw.githubusercontent.com/shenxiang11/WeApp/main/Weapp/ui/pageframe.html")
         guard let url = url else { return }
         let request = URLRequest(url: url)
         webview.load(request)

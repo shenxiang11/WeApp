@@ -70,36 +70,12 @@ class JSCore {
     }
 
     private func getLogicSdk() async -> String {
-        // 1. 指定API的URL
-        let urlString = "http://192.168.31.134:3000/logic/index.js"
-
-        // 2. 创建URL对象
-        guard let url = URL(string: urlString) else {
-            print("Invalid URL")
+        guard let url = Bundle.main.url(forResource: "logic", withExtension: "js") else { return "" }
+        guard let filecontent = try? String(contentsOf: url) else {
+            print("!!!", "nonono")
             return ""
         }
-
-        do {
-            // 3. 创建URLSession对象
-            let (data, response) = try await URLSession.shared.data(from: url)
-
-            // 4. 检查响应是否为HTTP响应
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("Invalid HTTP response")
-                return ""
-            }
-
-            // 5. 检查响应状态码是否为200（成功）
-            guard httpResponse.statusCode == 200 else {
-                print("HTTP status code: \(httpResponse.statusCode)")
-                return ""
-            }
-
-            return String(data: data, encoding: .utf8) ?? ""
-        } catch {
-            print("Error fetching data: \(error.localizedDescription)")
-        }
-
-        return ""
+        
+        return filecontent
     }
 }
