@@ -259,7 +259,7 @@ class Loader {
     }
 
     loadLogic(appId, bridgeId, pages) {
-        NativeAPI.request(`http://192.168.31.134:3000/apps/${appId}/logic.js`, (res) => {
+        NativeAPI.request(`https://weapp-frame.oss-cn-shanghai.aliyuncs.com/${appId}/logic.js`, (res) => {
             eval(res)
             modRequire('app')
             pages.forEach(page => {
