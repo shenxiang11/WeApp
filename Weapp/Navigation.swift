@@ -43,7 +43,6 @@ class WeNavigation {
             let miniNavigationController = UINavigationController(rootViewController: vc)
 
             miniNavigationController.navigationBar.isTranslucent = false
-//            miniNavigationController.navigationBar.isHidden = true
 
             let containerView = WeWrapper {
                 NavigationViewController(navigationController: miniNavigationController)

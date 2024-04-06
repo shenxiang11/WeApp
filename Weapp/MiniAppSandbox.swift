@@ -44,6 +44,13 @@ class MiniAppSandbox: NSObject {
         let miniNavigationController = WeNavigation.showFullScreen(view) {
             self.initApp()
         }
+
+        // TODO: 这是调试
+        if (appInfo.appId == "douyin") {
+            miniNavigationController?.navigationBar.isHidden = true
+
+        }
+
         self.miniNavigationController = miniNavigationController
     }
 
@@ -79,9 +86,9 @@ class MiniAppSandbox: NSObject {
         let webview = WKWebView(frame: .zero, configuration: config)
         webview.isInspectable = true
 
-        let url = URL(string: "https://weapp-frame.oss-cn-shanghai.aliyuncs.com/ui/pageframe.html")
+        let url = URL(string: "https://shenxiang11.github.io/WeApp/")
         guard let url = url else { return }
-        let request = URLRequest(url: url)
+        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         webview.load(request)
 
         guard let jscore = jscore else { return }
@@ -167,9 +174,9 @@ extension MiniAppSandbox {
         let webview = WKWebView(frame: .zero, configuration: config)
         webview.isInspectable = true
 
-        let url = URL(string: "https://raw.githubusercontent.com/shenxiang11/WeApp/main/Weapp/ui/pageframe.html")
+        let url = URL(string: "https://shenxiang11.github.io/WeApp/")
         guard let url = url else { return }
-        let request = URLRequest(url: url)
+        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         webview.load(request)
 
         guard let jscore = jscore, let detailInfo = detailInfo else { return }
@@ -180,7 +187,15 @@ extension MiniAppSandbox {
     }
 
     func navigateBack() {
-        let bridge = self.bridgeList.last
+        let bridge = self.bridgeList.last // 要销毁的 bridge
+        let targetBridge = self.bridgeList[self.bridgeList.count - 2] // 要展示的 bridge
+
+        bridge?.sendLogicMessage(payload: [
+            "type": "pageUnload",
+            "body": [
+                "bridgeId": bridge?.id
+            ]
+        ])
 
         bridge?.webView.stopLoading()
         bridge?.webView.navigationDelegate = nil

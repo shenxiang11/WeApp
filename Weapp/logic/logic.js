@@ -246,8 +246,15 @@ class RuntimeManager {
     }
 
     pageReady(bridgeId) {
-        const page = this.pages.get(bridgeId);
-        page.onReady && page.onReady();
+        const page = this.pages.get(bridgeId)
+        page.onReady && page.onReady()
+    }
+
+    pageUnload(bridgeId) {
+        const page = this.pages.get(bridgeId)
+        navigation.popState()
+        page.onUnload && page.onUnload()
+        this.pages.delete(bridgeId)
     }
 }
 
@@ -259,7 +266,7 @@ class Loader {
     }
 
     loadLogic(appId, bridgeId, pages) {
-        NativeAPI.request(`https://weapp-frame.oss-cn-shanghai.aliyuncs.com/${appId}/logic.js`, (res) => {
+        NativeAPI.request(`https://weapp-frame.oss-cn-shanghai.aliyuncs.com/${appId}/logic.js?a=1`, (res) => {
             eval(res)
             modRequire('app')
             pages.forEach(page => {
@@ -350,6 +357,11 @@ function nativeCall(payload) {
             id,
         } = body
         runtimeManager.pageReady(id)
+    } else if (type === 'pageUnload') {
+        const {
+            id,
+        } = body;
+        runtimeManager.pageUnload(id)
     }
 }
 
