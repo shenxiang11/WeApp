@@ -252,6 +252,7 @@ class RuntimeManager {
 
     pageUnload(bridgeId) {
         const page = this.pages.get(bridgeId)
+        console.log(bridgeId, this.pages)
         navigation.popState()
         page.onUnload && page.onUnload()
         this.pages.delete(bridgeId)
@@ -359,9 +360,9 @@ function nativeCall(payload) {
         runtimeManager.pageReady(id)
     } else if (type === 'pageUnload') {
         const {
-            id,
+            bridgeId,
         } = body;
-        runtimeManager.pageUnload(id)
+        runtimeManager.pageUnload(bridgeId)
     }
 }
 
