@@ -39,8 +39,12 @@ class NativeAPI: NSObject, NativeAPIExport {
 }
 
 class JSCore {
-    let parent: MiniAppSandbox
+    weak var parent: MiniAppSandbox?
     var worker: JSContext?
+
+    deinit {
+        print("\(self) 销毁")
+    }
 
     init(parent: MiniAppSandbox) {
         self.parent = parent
@@ -60,7 +64,7 @@ class JSCore {
     }
 
     func onMessage(payload: [String: Any]) {
-        self.parent.onMessage(payload: payload)
+        self.parent?.onMessage(payload: payload)
     }
 
     func sendMessage(payload: [String: Any]) {

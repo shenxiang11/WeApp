@@ -32,6 +32,10 @@ class MiniAppSandbox: NSObject {
 
     var detailInfo: [String: Any]?
 
+    deinit {
+        print("\(self) 销毁")
+    }
+
     init(appInfo: AppInfo) {
         self.appInfo = appInfo
         super.init()
@@ -41,7 +45,7 @@ class MiniAppSandbox: NSObject {
 
         let view = LoadingView(appInfo: appInfo)
 
-        let miniNavigationController = WeNavigation.showFullScreen(view) {
+        let miniNavigationController = WeNavigation.showFullScreen(view, appInfo) {
             self.initApp()
         }
 
@@ -91,8 +95,7 @@ class MiniAppSandbox: NSObject {
         let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         webview.load(request)
 
-        guard let jscore = jscore else { return }
-        let entryPageBridge = Bridge(isRoot: true, webview: webview, jscore: jscore, parent: self, pages: pages, page: "", appInfo: info)
+        let entryPageBridge = Bridge(isRoot: true, webview: webview, parent: self, pages: pages, page: "", appInfo: info)
         webview.navigationDelegate = entryPageBridge
         webview.scrollView.delegate = entryPageBridge
 
@@ -179,8 +182,8 @@ extension MiniAppSandbox {
         let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         webview.load(request)
 
-        guard let jscore = jscore, let detailInfo = detailInfo else { return }
-        let bridge = Bridge(isRoot: false, webview: webview, jscore: jscore, parent: self, pages: [], page: urlStr, appInfo: detailInfo)
+        guard let detailInfo = detailInfo else { return }
+        let bridge = Bridge(isRoot: false, webview: webview, parent: self, pages: [], page: urlStr, appInfo: detailInfo)
         webview.navigationDelegate = bridge
         webview.scrollView.delegate = bridge
         self.bridgeList.append(bridge)
@@ -188,7 +191,6 @@ extension MiniAppSandbox {
 
     func navigateBack() {
         let bridge = self.bridgeList.last // 要销毁的 bridge
-        let targetBridge = self.bridgeList[self.bridgeList.count - 2] // 要展示的 bridge
 
         bridge?.sendLogicMessage(payload: [
             "type": "pageUnload",

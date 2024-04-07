@@ -36,7 +36,7 @@ class WeNavigation {
         return nil
     }
 
-    static func showFullScreen<Content: View>(_ view: Content, animated: Bool = true, completion: (() -> Void)? = nil) -> UINavigationController? {
+    static func showFullScreen<Content: View>(_ view: Content, _ info: AppInfo, animated: Bool = true, completion: (() -> Void)? = nil) -> UINavigationController? {
         if let navigationController = Self.getCurrentNavigationController() {
 
             let vc = UIHostingController(rootView: view)
@@ -46,6 +46,8 @@ class WeNavigation {
 
             let containerView = WeWrapper {
                 NavigationViewController(navigationController: miniNavigationController)
+            } onClose: {
+                AppManger.closeApp(info: info)
             }
             let containerVC = UIHostingController(rootView: containerView)
             containerVC.modalPresentationStyle = .fullScreen

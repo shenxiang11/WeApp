@@ -14,7 +14,6 @@ class Bridge: NSObject {
     let isRoot: Bool
     let id = UUID().uuidString
     let webView: WKWebView
-    let jscore: JSCore
     weak var parent: MiniAppSandbox?
     let page: String
     let pages: [String]
@@ -23,10 +22,13 @@ class Bridge: NSObject {
     var uiLoaded = false
     var logicLoaded = false
 
-    init(isRoot: Bool, webview: WKWebView, jscore: JSCore, parent: MiniAppSandbox, pages: [String], page: String, appInfo: [String: Any]) {
+    deinit {
+        print("\(self) 销毁")
+    }
+
+    init(isRoot: Bool, webview: WKWebView, parent: MiniAppSandbox, pages: [String], page: String, appInfo: [String: Any]) {
         self.isRoot = isRoot
         self.webView = webview
-        self.jscore = jscore
         self.parent = parent
         self.pages = pages
         self.page = page
@@ -75,7 +77,7 @@ class Bridge: NSObject {
     }
 
     func sendLogicMessage(payload: [String: Any]) {
-        jscore.sendMessage(payload: payload)
+        parent?.jscore?.sendMessage(payload: payload)
     }
 
     func sendUIMessage(payload: [String: Any]) {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WeWrapper<Content: View>: View {
     let content: () -> Content
+    let onClose: (() -> Void)?
 
     var body: some View {
         content()
@@ -29,7 +30,7 @@ struct WeWrapper<Content: View>: View {
                         .frame(width: 1, height: 18)
 
                     Button {
-                        WeNavigation.getCurrentNavigationController()?.dismiss(animated: true)
+                        onClose?()
                     } label: {
                         Image(systemName: "smallcircle.filled.circle")
                     }
@@ -50,5 +51,8 @@ struct WeWrapper<Content: View>: View {
 #Preview {
     WeWrapper {
         Text("123123")
+    } onClose: {
+        
     }
+
 }

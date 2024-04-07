@@ -18,8 +18,12 @@ class AppManger {
 
     }
 
-    static func closeApp() {
-        
+    static func closeApp(info: AppInfo) {
+        appStack.removeAll { app in
+            app.appInfo.appId == info.appId
+        }
+
+        WeNavigation.getCurrentNavigationController()?.dismiss(animated: true)
     }
 }
 
