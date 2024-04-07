@@ -2,15 +2,7 @@
 
 ## 演示
 
-<iframe 
-    src="//player.bilibili.com/player.html?aid=1852981596&bvid=BV1rp42197TD&cid=1496575000&p=1" 
-    scrolling="no" 
-    border="0" 
-    frameborder="no" 
-    framespacing="0"
-    allowfullscreen="true"
->
-</iframe>
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](//player.bilibili.com/player.html?aid=1852981596&bvid=BV1rp42197TD&cid=1496575000&p=1)
 
 
 ## UML
